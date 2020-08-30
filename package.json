@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mrsweet5/catcafe#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
