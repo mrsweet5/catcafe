@@ -11,8 +11,8 @@ const bookingSchema = new Schema({
         type: Date,
         required: true,
     },
-    time: {
-        type: String,
+    timeSlot: {
+        type: Number,
         required: true,
     },
     name: {
