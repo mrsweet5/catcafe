@@ -1,48 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+@import url("https://fonts.googleapis.com/css?family=Sacramento&display=swap");
 
-@font-face {
-	font-family: neon;
-	src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
-  }
-
-.flux {
-	font-family: neon;
-	color: #426DFB;
+h1 {
+	padding-top: 50px;
+	position: relative;
 	font-size: 50px;
-	text-shadow: 0 0 3vw #2356FF;
+	text-shadow: 0 0 5px #ffa500, 0 0 15px #ffa500, 0 0 20px #ffa500, 0 0 40px #ffa500, 0 0 60px #ff0000, 0 0 10px #ff8d00, 0 0 98px #ff0000;
+	  color: #fff6a9;
+	font-family: "Sacramento", cursive;
+	text-align: center;
   }
-.flux {
-	animation: flux 2s linear infinite;
-	-moz-animation: flux 2s linear infinite;
-	-webkit-animation: flux 2s linear infinite;
-	-o-animation: flux 2s linear infinite;
-  }
-  
-  @keyframes flux {
-	0%,
-	100% {
-	  text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
-	  color: #28D7FE;
-	}
-	50% {
-	  text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
-	  color: #146C80;
-	}
-  }
+
 
 body {
   font-family: 'Lato', sans-serif;
-  /* background: #e2dedb; */
-  background: 
-		linear-gradient(#f8a4df, #2c58db);
+  background: linear-gradient(black, #6fdaed);
   color: #b3aca7;
-}
-
-header {
-  position: relative;
-  margin: 50px 0 25px 0;
-  text-align: center;
-  letter-spacing: 7px;
 }
 
 #form {
