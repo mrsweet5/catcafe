@@ -4,31 +4,26 @@ import Axios from "axios";
 import { Redirect } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 const URL = process.env.REACT_APP_URL;
 class NewBooking extends Component {
   state = {
     numberOfAdults:0,
     date: new Date(),
-    
     timeSlot: "1pm",
     name: "",
     email: "",
     phoneNumber: "",
     bookings:[],
   };
-
   onChangeDate = (date) => {
       this.setState({
           date
       });
   }
-
   changeHandler = (e) => {
     console.log("changeHandler called: ",e.target.value)
     this.setState({ [e.target.name]: e.target.value });
   };
-
   submitHandler = () => {
     console.log(this.state);
     Axios.post(`${URL}/booking/new`, this.state)
@@ -41,10 +36,8 @@ class NewBooking extends Component {
         console.log(err);
       });
   };
-
   fetchItems = () => {
     let token = localStorage.getItem("token");
-
     Axios.get(`${URL}/booking/all`, {
       headers: {
         "x-auth-token": token,
@@ -64,22 +57,18 @@ class NewBooking extends Component {
   componentDidMount() {
     this.fetchItems();
   }
-
   render() {
     let { numberOfAdults, date, timeSlot, name,email, phoneNumber } = this.state;
-
     if (this.state.status) {
       return <Redirect to="/" />;
     }
-
     return (
       <div>
-        <Container>
-        <h1>Book a Reservation</h1>
-        <div>
-          <Row>
-          <Form.Group 
-                controlId="exampleForm.ControlSelect1">
+                 
+        <header className="flux">RESERVE A SLOT</header>
+        <form id="form">
+        <Form.Group 
+                controlId="exampleForm.ControlSelect1" className ="styling">
               <Form.Label>Number of Adults</Form.Label>
               <Form.Control as="select" name="numberOfAdults" onChange={this.changeHandler} value={numberOfAdults}>
                   <option value="1">1</option>
@@ -89,59 +78,38 @@ class NewBooking extends Component {
                   <option value="5">5</option>
               </Form.Control>
           </Form.Group>
-          </Row>
-          <Row>
-            <DatePicker
-            selected = {date}
+
+          <DatePicker className= "mb-2 styling"
+            selected  = {date}
             onChange={this.onChangeDate} dateFormat="dd/MM/yyyy"
             />
-            {/* < Form.Control name="date" type="date" value={ this.state.date } selected = {date}
-            onChange={this.changeHandler} /> */}
-          </Row>
-          <Row>
+            
             <Form.Group 
-                controlId="exampleForm.ControlSelect1">
+                controlId="exampleForm.ControlSelect1" className ="styling mt-2">
               <Form.Label>Time Slot</Form.Label>
-              <Form.Control as="select" name="timeSlot" onChange={this.changeHandler} value={timeSlot}>
-                  <option value="1pm">1pm</option>
+              <Form.Control as="select" name="timeSlot" onChange={this.changeHandler} value={timeSlot} >
+                  <option value ="1pm">1pm</option>
                   <option value="2pm">2pm</option>
                   <option value="3pm">3pm</option>
                   <option value="4pm">4pm</option>
                   <option value="5pm">5pm</option>
               </Form.Control>
           </Form.Group>
-          </Row>
-          <Row>
-            <Form.Control
-              placeholder="Name"
-              name="name"
-              value={name}
-              onChange={this.changeHandler}
-            />
-          </Row>
-          <Row>
-            <Form.Control
-              placeholder="Email"
-              name="email"
-              value={email}
-              onChange={this.changeHandler}
-            />
-          </Row>
-          <Row>
-            <Form.Control
-              placeholder="phoneNumber"
-              name="phoneNumber"
-              value={phoneNumber}
-              onChange={this.changeHandler}
-            />
-          </Row>
-          <Button onClick={this.submitHandler}>Submit</Button>
-          
-        </div>
-        </Container>
-      </div>
+
+          <Form.Control name="name" placeholder="NAME" value={name} id="input" type="text" className ="styling mb-3" 
+          onChange={this.changeHandler} />
+
+          <Form.Control name="email" type="text" placeholder="E-MAIL" value={email} id="input" className ="styling mb-3"
+            onChange={this.changeHandler} />
+
+          <Form.Control name="phoneNumber" type="text" placeholder="PHONE NUMBER" id="input" className ="styling mb-3"
+            value={phoneNumber}
+            onChange={this.changeHandler} />
+
+          <input id="submit" type="submit" onClick={this.submitHandler} Submit/>
+        </form>
+            </div>
     );
   }
 }
-
 export default NewBooking;

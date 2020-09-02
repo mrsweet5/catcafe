@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import Axios from "axios";
-import Moment from 'react-moment';
 import TimeDisplay from './TimeDisplay'
 
 const URL = process.env.REACT_APP_URL;
