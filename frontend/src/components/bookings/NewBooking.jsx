@@ -10,6 +10,7 @@ class NewBooking extends Component {
   state = {
     numberOfAdults:0,
     date: new Date(),
+    
     timeSlot: "1pm",
     name: "",
     email: "",
@@ -64,10 +65,6 @@ class NewBooking extends Component {
     this.fetchItems();
   }
 
-  // filterBookings = () => {
-  //   this.state.bookings.filter
-  // }
-
   render() {
     let { numberOfAdults, date, timeSlot, name,email, phoneNumber } = this.state;
 
@@ -96,8 +93,10 @@ class NewBooking extends Component {
           <Row>
             <DatePicker
             selected = {date}
-            onChange={this.onChangeDate}
+            onChange={this.onChangeDate} dateFormat="dd/MM/yyyy"
             />
+            {/* < Form.Control name="date" type="date" value={ this.state.date } selected = {date}
+            onChange={this.changeHandler} /> */}
           </Row>
           <Row>
             <Form.Group 

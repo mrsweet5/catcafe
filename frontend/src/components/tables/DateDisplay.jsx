@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import Axios from "axios";
 import Moment from 'react-moment';
+import TimeDisplay from './TimeDisplay'
 
 const URL = process.env.REACT_APP_URL;
 
@@ -24,9 +25,10 @@ export default class DateDisplay extends Component {
           let bookingsArray = []; 
           let currentDate;
           sortedBookings.forEach( (b, i)=>{
-            console.log('date', b.date.split('T')[0]);
-            console.log('currrentDate', currentDate);
-            if (b.date.split('T')[0] !== currentDate){
+            const bookingDate = new Date(b.date).toLocaleDateString() 
+          console.log(bookingDate);
+            if (bookingDate.split('T')[0] !== currentDate){
+              b.date = bookingDate;
               bookingsArray.push(b);
               currentDate = b.date.split('T')[0];
             }else{
@@ -36,9 +38,8 @@ export default class DateDisplay extends Component {
               bookingsArray[bookingsArray.length-1] = {...currentBooking,numberOfAdults: total}; 
             }
           });
+          console.log(bookingsArray);
         this.setState({ bookings: bookingsArray });
-        // }
-        // console.log(this.state.bookings);
       })
       .catch((err) => {
         console.log(err);
@@ -47,6 +48,10 @@ export default class DateDisplay extends Component {
   componentDidMount() {
     this.fetchItems();
   }
+
+displayTimeHandler = (e) => {
+  console.log (e.target.value)
+}
   render() {
     return (
       <Container>
@@ -60,7 +65,7 @@ export default class DateDisplay extends Component {
                   <th>#</th>
                   <th>Date </th>
                   <th>Number of Bookings</th>
-                  <th>Time Slot</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,10 +73,10 @@ export default class DateDisplay extends Component {
                     {this.state.bookings.map((booking, i) => (
                       <tr key={i}>
                         <td>{i}</td>
-                        <td><Moment format="D MMM YYYY" withTitle>{booking.date}</Moment></td>
+                        <td>{booking.date}</td>
                         <td>{booking.numberOfAdults}
                         </td>
-                        <td>{booking.timeSlot}</td>
+                        <td><Button variant ="info" value={booking.date} onClick ={this.displayTimeHandler}  >View</Button></td>
                       </tr>
                     ))}
               </tbody>

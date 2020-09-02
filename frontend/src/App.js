@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import logo from './logo.svg';
+
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import NewBooking from "./components/bookings/NewBooking"
 import PrivateRoute from "./components/PrivateRoute";
-import Home from "./components/AdminDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 import Navigation from "./components/Navigation";
 import {
   Switch,
@@ -105,7 +105,7 @@ export default class App extends Component {
       <Router>
         <Navigation user={user} logout={this.logoutHandler} />
         <Switch>
-        <PrivateRoute exact path="/admin" isAuth={isAuth} component={Home} />
+        <PrivateRoute exact path="/admin" isAuth={isAuth} component={AdminDashboard} />
           <Route
               path="/register"
               exact
