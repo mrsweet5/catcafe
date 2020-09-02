@@ -10,7 +10,7 @@ class NewBooking extends Component {
   state = {
     numberOfAdults:0,
     date: new Date(),
-    timeSlot: "",
+    timeSlot: "1pm",
     name: "",
     email: "",
     phoneNumber: "",
@@ -104,11 +104,11 @@ class NewBooking extends Component {
                 controlId="exampleForm.ControlSelect1">
               <Form.Label>Time Slot</Form.Label>
               <Form.Control as="select" name="timeSlot" onChange={this.changeHandler} value={timeSlot}>
-                  <option value="1">1pm</option>
-                  <option value="2">2pm</option>
-                  <option value="3">3pm</option>
-                  <option value="4">4pm</option>
-                  <option value="5">5pm</option>
+                  <option value="1pm">1pm</option>
+                  <option value="2pm">2pm</option>
+                  <option value="3pm">3pm</option>
+                  <option value="4pm">4pm</option>
+                  <option value="5pm">5pm</option>
               </Form.Control>
           </Form.Group>
           </Row>

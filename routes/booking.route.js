@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Booking = require("../models/booking.model");
 const checkToken = require("../config/config");
 
+
 router.post("/new", async (req, res) => {
     try {
       let booking = new Booking(req.body);

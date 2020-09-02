@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import Axios from "axios";
+import Moment from 'react-moment';
+
+const URL = process.env.REACT_APP_URL;
+
 
 export default class DateDisplay extends Component {
   state = {
@@ -16,10 +20,25 @@ export default class DateDisplay extends Component {
     })
       .then((res) => {
         console.log(res.data);
-        // if (this.mounted) {
-        this.setState({ bookings: res.data.bookings });
+          let sortedBookings = res.data.bookings.sort((a, b)=> Date.parse (a.date) - Date.parse(b.date));
+          let bookingsArray = []; 
+          let currentDate;
+          sortedBookings.forEach( (b, i)=>{
+            console.log('date', b.date.split('T')[0]);
+            console.log('currrentDate', currentDate);
+            if (b.date.split('T')[0] !== currentDate){
+              bookingsArray.push(b);
+              currentDate = b.date.split('T')[0];
+            }else{
+              let total = 0 ;
+              total = bookingsArray[bookingsArray.length-1].numberOfAdults + b.numberOfAdults;
+              let currentBooking = bookingsArray[bookingsArray.length-1];
+              bookingsArray[bookingsArray.length-1] = {...currentBooking,numberOfAdults: total}; 
+            }
+          });
+        this.setState({ bookings: bookingsArray });
         // }
-        console.log(this.state.bookings);
+        // console.log(this.state.bookings);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +68,7 @@ export default class DateDisplay extends Component {
                     {this.state.bookings.map((booking, i) => (
                       <tr key={i}>
                         <td>{i}</td>
-                        <td>{booking.date}</td>
+                        <td><Moment format="D MMM YYYY" withTitle>{booking.date}</Moment></td>
                         <td>{booking.numberOfAdults}
                         </td>
                         <td>{booking.timeSlot}</td>
