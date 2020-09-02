@@ -65,7 +65,7 @@ class NewBooking extends Component {
     return (
       <div>
                  
-        <h1>Booking</h1>
+        <h1 className="headhead">Booking</h1>
         <form id="form">
         <Form.Group 
                 controlId="exampleForm.ControlSelect1" className ="styling">

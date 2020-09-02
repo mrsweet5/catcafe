@@ -6,7 +6,7 @@ import NewBooking from "./components/bookings/NewBooking"
 import PrivateRoute from "./components/PrivateRoute";
 import AdminDashboard from "./components/AdminDashboard";
 import Navigation from "./components/Navigation";
-import BookingStyle from "./components/bookings/BookingStyle"
+import Home from "./components/staticpages/Home"
 import {
   Switch,
   BrowserRouter as Router,
@@ -124,9 +124,8 @@ export default class App extends Component {
               component = {NewBooking}
             />
             <Route
-              exact
-              path="/bookingstyle"
-              component = {BookingStyle}
+              path="/"
+              component = {Home}
             />
         </Switch>
       </Router>
