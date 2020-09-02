@@ -24,6 +24,8 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.2"
+    "moment": "^2.27.0",
+    "mongoose": "^5.10.2",
+    "react-router-dom": "^5.2.0"
   }
 }

@@ -12,7 +12,7 @@ const bookingSchema = new Schema({
         required: true,
     },
     timeSlot: {
-        type: Number,
+        type: String,
         required: true,
     },
     name: {

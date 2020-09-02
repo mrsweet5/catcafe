@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import logo from './logo.svg';
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import NewBooking from "./components/bookings/NewBooking"
+import PrivateRoute from "./components/PrivateRoute";
+import Home from "./components/AdminDashboard";
+import Navigation from "./components/Navigation";
 import {
   Switch,
   BrowserRouter as Router,
@@ -58,7 +62,7 @@ export default class App extends Component {
         // console.log(err);
         this.setState({
           isAuth: false,
-          errorMessage: err.response.data.message,
+          // errorMessage: err.response.data.message,
         });
       });
   };
@@ -81,11 +85,27 @@ export default class App extends Component {
         });
       });
   };
+
+  logoutHandler = (e) => {
+    e.preventDefault();
+    console.log("i logged out");
+    this.setState({
+      items: [],
+      errorMessage: null,
+      isAuth: false,
+      user: null,
+    });
+
+    localStorage.removeItem("token");
+  };
+  
   render() {
     let { isAuth, user, errorMessage } = this.state;
     return (
       <Router>
+        <Navigation user={user} logout={this.logoutHandler} />
         <Switch>
+        <PrivateRoute exact path="/admin" isAuth={isAuth} component={Home} />
           <Route
               path="/register"
               exact
@@ -95,8 +115,12 @@ export default class App extends Component {
               path="/login"
               exact
               render={() =>
-                isAuth ? <Redirect to="/" /> : <Login login={this.loginHandler} />
+                isAuth ? <Redirect to="/admin" /> : <Login login={this.loginHandler} />
               }
+            />
+            <Route
+              path="/booking"
+              component = {NewBooking}
             />
         </Switch>
       </Router>
