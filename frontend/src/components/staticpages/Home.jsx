@@ -1,43 +1,13 @@
 import React from 'react'
-import Portfolio from './Portfolio'
+
 
 function Home() {
-    const portfolioLinks = [
-      {
-        title: 'Threads',
-        caption: 'Illustration'
-      },
-      {
-        title: 'Explore',
-        caption: 'Graphic Design'
-      },
-      {
-        title: 'Finish',
-        caption: 'Identity'
-      },
-      {
-        title: 'Lines',
-        caption: 'Branding'
-      },
-      {
-        title: 'Southwest',
-        caption: 'Website Design'
-      },
-      {
-        title: 'Window',
-        caption: 'Photography'
-      },
-      {
-        title: 'Pizza',
-        caption: 'I love pizza!'
-      }
-    ]
   
     return (
       <div className="App">
         <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div className="container">
-        <a className="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <img className="navbar-brand js-scroll-trigger" src="img/pusstrap.png"/>
         <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i className="fa fa-bars"></i>
@@ -46,9 +16,6 @@ function Home() {
           <ul className="navbar-nav text-uppercase ml-auto">
             <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="#services">Services</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
             </li>
             <li className="nav-item">
               <a className="nav-link js-scroll-trigger" href="#about">About</a>
@@ -114,7 +81,6 @@ function Home() {
     </section>
   
     
-    <Portfolio portfolioLinks={portfolioLinks}></Portfolio>
   
     
     <section className="page-section" id="about">

@@ -109,7 +109,7 @@ export default class App extends Component {
     let { isAuth, user, errorMessage } = this.state;
     return (
       <Router>
-        <Navigation user={user} logout={this.logoutHandler} />
+        
         <Switch>
         <PrivateRoute exact path="/admin" isAuth={isAuth} displayTimeHandler={(v)=>{this.displayTimeHandler(v)}} component={AdminDashboard} />
           <Route
