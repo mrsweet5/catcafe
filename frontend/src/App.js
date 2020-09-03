@@ -6,7 +6,8 @@ import NewBooking from "./components/bookings/NewBooking"
 import PrivateRoute from "./components/PrivateRoute";
 import AdminDashboard from "./components/AdminDashboard";
 import Navigation from "./components/Navigation";
-import Home from "./components/staticpages/Home"
+import Home from "./components/staticpages/Home";
+import TimeDisplay from "./components/tables/TimeDisplay";
 import {
   Switch,
   BrowserRouter as Router,
@@ -19,10 +20,10 @@ import './App.css';
 const URL = process.env.REACT_APP_URL;
 export default class App extends Component {
   state = {
-    items: [],
     errorMessage: null,
     isAuth: false,
     user: null,
+    currentDate:''
   };
   getUserProfile = (token) => {
     Axios.get(`${URL}/auth/user`, {
@@ -99,14 +100,18 @@ export default class App extends Component {
 
     localStorage.removeItem("token");
   };
-  
+  displayTimeHandler =(e) => {
+    this.setState ({
+      currentDate: e
+    })
+  }
   render() {
     let { isAuth, user, errorMessage } = this.state;
     return (
       <Router>
         <Navigation user={user} logout={this.logoutHandler} />
         <Switch>
-        <PrivateRoute exact path="/admin" isAuth={isAuth} component={AdminDashboard} />
+        <PrivateRoute exact path="/admin" isAuth={isAuth} displayTimeHandler={(v)=>{this.displayTimeHandler(v)}} component={AdminDashboard} />
           <Route
               path="/register"
               exact
@@ -123,6 +128,9 @@ export default class App extends Component {
               path="/booking"
               component = {NewBooking}
             />
+            <Route 
+            path ="/time"
+            render={()=> <TimeDisplay  currentDate={this.state.currentDate} />} />
             <Route
               path="/"
               component = {Home}

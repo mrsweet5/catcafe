@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import Axios from "axios";
-import TimeDisplay from './TimeDisplay'
+
+import {Redirect} from "react-router-dom"
 
 const URL = process.env.REACT_APP_URL;
 
@@ -9,6 +10,7 @@ const URL = process.env.REACT_APP_URL;
 export default class DateDisplay extends Component {
   state = {
     bookings: [],
+    redirect: false,
   };
   fetchItems = () => {
     let token = localStorage.getItem("token");
@@ -47,11 +49,8 @@ export default class DateDisplay extends Component {
   componentDidMount() {
     this.fetchItems();
   }
-
-displayTimeHandler = (e) => {
-  console.log (e.target.value)
-}
   render() {
+    if (this.state.redirect){return <Redirect to = "/time" />}
     return (
       <Container>
         <Row>
@@ -75,7 +74,9 @@ displayTimeHandler = (e) => {
                         <td>{booking.date}</td>
                         <td>{booking.numberOfAdults}
                         </td>
-                        <td><Button variant ="info" value={booking.date} onClick ={this.displayTimeHandler}  >View</Button></td>
+                        <td><Button variant ="info" value={booking.date} onClick ={(e)=>{
+                          this.props.displayTimeHandler(e.target.value); 
+                          this.setState({redirect: true})}}  >View</Button></td>
                       </tr>
                     ))}
               </tbody>

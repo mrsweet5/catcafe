@@ -7,11 +7,16 @@ import { Container, Row, Col, Button, Table } from "react-bootstrap";
 const URL = process.env.REACT_APP_URL;
 
 export default class AdminDashboard extends Component {
-    render() {
+
+    render() 
+    { 
+        console.log(this.props)
         return (
             <div>
-                <DateDisplay />
+                <DateDisplay displayTimeHandler={(v)=>{this.props.displayTimeHandler(v)}} />
             </div>
         )
     }
 }
+
+//
